@@ -1,0 +1,71 @@
+.phonebook {
+    margin: 0 auto;
+    max-width: 400px;
+    padding: 2rem;
+    background-color: #ffe7f0;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.label {
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.inputContainer {
+    margin-bottom: 1rem;
+}
+
+.inputContainer input {
+    padding: 0.5rem;
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px;
+    width: 100%;
+}
+
+.button {
+    background-color: #ff4081;
+    color: #ffffff;
+    border: none;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.filterContainer {
+    margin-bottom: 1rem;
+}
+
+.filterContainer label {
+    display: block;
+    font-size: 1rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    margin-top: 20px;
+}
+
+.filterContainer input {
+    padding: 0.5rem;
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px;
+    width: 100%;
+}
+
+.deleteButton {
+    background-color: #ff0000;
+    color: #ffffff;
+    border: none;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-left: 10px;
+}
+
+.contactListItem {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+}

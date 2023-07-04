@@ -1,16 +1,19 @@
-export const App = () => {
-  return (
-    <div
-      style={{
-        height: '100vh',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        fontSize: 40,
-        color: '#010101'
-      }}
-    >
-      React homework template
-    </div>
-  );
+import React from "react";
+import { useSelector } from "react-redux";
+import ContactList from "./ContactList";
+import NameForm from "./NameForm";
+import Filter from "./Filter";
+import styles from "./styles.module.css";
+
+const App = () => {
+return (
+  <div className={styles.phonebook}>
+    <h2>Phonebook</h2>
+    <NameForm />
+    <Filter />
+    <ContactList />
+  </div>
+);
 };
+
+export default App;
