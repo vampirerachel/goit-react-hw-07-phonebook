@@ -4,17 +4,18 @@ import { deleteContact } from "../reducers/contactReducer";
 import styles from "./styles.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { fetchContacts } from "./redux/operators";
-
+import { getFilter, getContacts } from "./redux/selector";
 
 
 const ContactList = () => {
-const contacts = useSelector((state) => state.contacts.items);
-const filter = useSelector((state) => state.filter);
-  const filteredContacts = contacts.filter((contact) => {
-  const nameMatch = contact.name.toLowerCase().includes(filter.toLowerCase());
-  const numberMatch = contact.number.includes(filter);
-  return nameMatch || numberMatch;
+const contacts = useSelector(getContacts);
+const filter = useSelector(getFilter);
+const filteredContacts = contacts.filter((contact) => {
+const nameMatch = contact.name.toLowerCase().includes(filter.toLowerCase());
+const numberMatch = contact.number.includes(filter);
+return nameMatch || numberMatch;
 });
+console.log("Filter:", filter);
 
 const dispatch = useDispatch();
     const handleDelete = (id) => {
