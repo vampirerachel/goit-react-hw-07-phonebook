@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { addContact } from "../reducers/contactReducer";
+import { addContact } from "../redux/contactReducer";
 import { nanoid } from "@reduxjs/toolkit";
 import styles from "./styles.module.css";
 
@@ -9,7 +9,7 @@ const NameForm = () => {
   const [number, setNumber] = useState("");
   const dispatch = useDispatch();
 
- const capitalizeFirstLetter = (str) => {
+  const capitalizeFirstLetter = (str) => {
     return str
       .toLowerCase()
       .split(" ")
@@ -17,7 +17,7 @@ const NameForm = () => {
       .join(" ");
   };
 
-const handleSubmit = (event) => {
+  const handleSubmit = (event) => {
     event.preventDefault();
 
     const newContact = {
@@ -31,9 +31,8 @@ const handleSubmit = (event) => {
     setNumber("");
   };
 
-
   return (
-    <div className={styles.phonebook}>
+    <div className={styles.formContainer}>
       <p className={styles.label}>Name</p>
       <form onSubmit={handleSubmit}>
         <div className={styles.inputContainer}>
@@ -63,6 +62,6 @@ const handleSubmit = (event) => {
       </form>
     </div>
   );
+};
 
-}
 export default NameForm;
