@@ -5,8 +5,6 @@ import storage from "redux-persist/lib/storage";
 
 import contactsReducer, {
   fetchContacts,
-  addContact,
-  deleteContact,
 } from "./contactReducer";
 import filterReducer from "./filterReducer";
 
