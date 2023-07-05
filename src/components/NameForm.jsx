@@ -1,29 +1,34 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addContact } from "../redux/contactReducer";
 import { nanoid } from "@reduxjs/toolkit";
-import styles from "./styles.module.css";
+import styles from "./nameForm.module.css";
 
 const NameForm = () => {
   const [name, setName] = useState("");
   const [number, setNumber] = useState("");
   const dispatch = useDispatch();
+  const contacts = useSelector((state) => state.contacts.items);
 
   const capitalizeFirstLetter = (str) => {
-    return str
-      .toLowerCase()
-      .split(" ")
-      .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-      .join(" ");
+    return str.toLowerCase().replace(/\b\w/g, (c) => c.toUpperCase());
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
 
+    const formattedName = capitalizeFirstLetter(name.trim());
+    const formattedNumber = number.trim();
+
+    if (contacts.some((contact) => contact.name === formattedName)) {
+      alert("Contact with the same name already exists.");
+      return;
+    }
+
     const newContact = {
       id: nanoid(),
-      name: capitalizeFirstLetter(name),
-      number: capitalizeFirstLetter(number),
+      name: formattedName,
+      number: formattedNumber,
     };
 
     dispatch(addContact(newContact));
@@ -31,8 +36,25 @@ const NameForm = () => {
     setNumber("");
   };
 
+  const handleNameChange = (event) => {
+    const { value } = event.target;
+    if (/^[a-zA-Z\s]*$/.test(value) || value === "") {
+      setName(value);
+    }
+  };
+
+  const handleNumberChange = (event) => {
+    const { value } = event.target;
+    if (/^\d*$/.test(value) || value === "") {
+      setNumber(value);
+    }
+  };
+
   return (
     <div className={styles.formContainer}>
+      <div className={styles.phonebook}>
+        <h2 className={styles.phonebookTitle}>My Phonebook</h2>
+      </div>
       <p className={styles.label}>Name</p>
       <form onSubmit={handleSubmit}>
         <div className={styles.inputContainer}>
@@ -42,7 +64,7 @@ const NameForm = () => {
             name="name"
             required
             value={name}
-            onChange={(event) => setName(event.target.value)}
+            onChange={handleNameChange}
           />
         </div>
         <div className={styles.inputContainer}>
@@ -53,11 +75,11 @@ const NameForm = () => {
             name="number"
             required
             value={number}
-            onChange={(event) => setNumber(event.target.value)}
+            onChange={handleNumberChange}
           />
         </div>
         <button className={styles.button} type="submit">
-          Add contact
+          Add New Contact
         </button>
       </form>
     </div>

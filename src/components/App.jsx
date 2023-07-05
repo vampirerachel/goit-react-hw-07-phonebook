@@ -2,14 +2,14 @@ import React from "react";
 import ContactList from "./ContactList";
 import NameForm from "./NameForm";
 import Filter from "./Filter";
-import styles from "./styles.module.css";
+import styles from "./app.module.css"
 
 const App = () => {
   return (
-    <div className={styles.phonebook}>
-      <h2>Phonebook</h2>
-      <NameForm />
-      <Filter />
+    <div className={styles.phonebookContainer}>
+      <div className={styles.nameFormContainer}>
+        <NameForm />
+      </div>
       <ContactList />
     </div>
   );

@@ -1,9 +1,9 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchContacts, deleteContact } from "../redux/contactReducer";
-import styles from "./styles.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-
+import styles from "./contactList.module.css";
+import Filter from "./Filter";
 const ContactList = () => {
   const { items, isLoading, error } = useSelector((state) => state.contacts);
   const filter = useSelector((state) => state.filter);
@@ -23,21 +23,19 @@ const ContactList = () => {
     dispatch(deleteContact(id));
   };
 
-  if (isLoading) {
-    return <p>Loading contacts...</p>;
-  }
-
-  if (error) {
-    return <p>Error: {error}</p>;
-  }
-
   return (
     <div className={styles.contactListContainer}>
-      <h2>Contact List</h2>
-      {filteredContacts.length === 0 ? (
-        <p>No contacts found.</p>
+      <div className={styles.spineDecoration}></div>
+      <h2 className={styles.contactListTitle}>Contact List</h2>
+      <Filter />
+      {isLoading ? (
+        <p className={styles.loadingMessage}>Loading contacts...</p>
+      ) : error ? (
+        <p className={styles.errorMessage}>Error: {error}</p>
+      ) : filteredContacts.length === 0 ? (
+        <p className={styles.noContactsMessage}>No contacts found.</p>
       ) : (
-        <ul>
+        <ul className={styles.contactList}>
           {filteredContacts.map((contact) => (
             <li key={contact.id} className={styles.contactListItem}>
               <FontAwesomeIcon icon={contact.icon} />
