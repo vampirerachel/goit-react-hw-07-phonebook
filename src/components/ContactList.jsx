@@ -4,6 +4,7 @@ import { fetchContacts, deleteContact } from "../redux/contactReducer";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import styles from "./contactList.module.css";
 import Filter from "./Filter";
+
 const ContactList = () => {
   const { items, isLoading, error } = useSelector((state) => state.contacts);
   const filter = useSelector((state) => state.filter);
